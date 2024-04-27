@@ -1,0 +1,7 @@
+spring:
+  docker:
+    compose:
+      enabled: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+

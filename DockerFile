@@ -1,0 +1,12 @@
+FROM openjdk:21 AS build
+WORKDIR /app
+COPY src .
+RUN ./gradlew build
+
+FROM openjdk:21
+WORKDIR /app
+COPY --from=build /app/build/libs/payment_getaway-0.0.1.jar.
+COPY docker-startup.sh .
+RUN chmod +x docker-startup.sh
+EXPOSE 8080
+CMD ["./docker-startup.sh"]
